@@ -11,4 +11,3 @@ id = "4291"
 for i in range(1, 1024):
     data = {'id': id, 'holdthedoor': 'Submit'}
     r = requests.post(url, data=data)
-
