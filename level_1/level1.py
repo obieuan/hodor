@@ -10,7 +10,7 @@ datos = {
     "holdthedoor": "holdthedoor",
     "key": ""
 }
-contador = 15
+contador = 4080
 
 if __name__ == "__main__":
     for i in range(0, contador):
