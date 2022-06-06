@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 url = "http://158.69.76.135/level1.php"
 datos = {
     "id": "4291",
-    "holdthedoor": "holdthedoor",
+    "submit": "holdthedoor",
     "key": ""
 }
 contador = 4080
